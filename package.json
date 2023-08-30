@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@splinetool/react-spline": "^2.2.6",
+    "@splinetool/runtime": "^0.9.431",
     "connectkit": "^1.5.2",
     "next": "12.3.0",
     "react": "^18.0.0",
@@ -20,8 +22,11 @@
     "@types/node": "18.7.18",
     "@types/react": "^18.0.6",
     "@types/react-dom": "^18.0.2",
+    "autoprefixer": "^10.4.15",
     "eslint": "8.23.1",
     "eslint-config-next": "12.3.0",
+    "postcss": "^8.4.29",
+    "tailwindcss": "^3.3.3",
     "typescript": "^4.9.5"
   }
 }

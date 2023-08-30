@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app';
 import { WagmiConfig, createConfig } from 'wagmi';
 import { mainnet, polygon, optimism, arbitrum } from 'wagmi/chains';
 import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
+import Layout from '../components/Layout';
 
 const config = createConfig(
   getDefaultConfig({
@@ -19,7 +20,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig config={config}>
       <ConnectKitProvider debugMode>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ConnectKitProvider>
     </WagmiConfig>
   );
