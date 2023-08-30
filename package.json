@@ -12,7 +12,7 @@
     "@splinetool/react-spline": "^2.2.6",
     "@splinetool/runtime": "^0.9.431",
     "connectkit": "^1.5.2",
-    "next": "12.3.0",
+    "next": "^13.4.19",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "viem": "^1.0.0",
