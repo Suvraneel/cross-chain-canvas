@@ -217,149 +217,132 @@ export default function ReplicateFrontEnd() {
     writeAsync: writeAsync2,
   } = useContractWrite(preparesafeMintFromOtherChainContractWrite.config);
 
-  return (
-    <>
-      <Head>
-        <title>Replicate + Next.js</title>
-      </Head>
-      <div className="w-11/12 h-11/12 p-10 flex bg-brandGray-200/20 rounded-lg justify-between">
-        <div className="w-2/5 h-full flex flex-col gap-8">
-          <div
-            className={`text-3xl font-semibold text-white ${inter.className}`}
-          >
-            Dream something with OpenJourney:
-          </div>
+    return (
+        <>
+            <Head>
+                <title>CrossChain Canvas</title>
+            </Head>
+            <div className="w-11/12 h-11/12 p-10 flex bg-brandGray-500/50 rounded-lg justify-between">
+                <div className="w-2/5 h-full flex flex-col gap-8">
+                    <div
+                        className={`text-3xl font-semibold text-white ${inter.className}`}
+                    >
+                        Dream something with OpenJourney:
+                    </div>
 
-          <form className="w-full flex flex-col gap-2" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name of your awesome NFT"
-              className="w-full p-3 rounded-md"
-            />
-            <textarea
-              name="prompt"
-              placeholder="Enter a prompt to display an image"
-              className="w-full p-3 rounded-md"
-              rows={3}
-            />
-            <input
-              type="text"
-              name="negative_prompt"
-              placeholder="Specify things to not see in the output"
-              className="w-full p-3 rounded-md"
-            />
-            <label
-              htmlFor="height"
-              title="Select Image Height:"
-              className="hidden"
-            >
-              Select Image Height:
-            </label>
-            <select
-              id="height"
-              name="height"
-              value={height}
-              onChange={(e) => setHeight(e.target.value)}
-              className="w-full p-3 rounded-md"
-            >
-              <option value="128">128</option>
-              <option value="256">256</option>
-              <option value="512" selected>
-                512
-              </option>
-              {/* <option value="1024">1024</option> */}
-            </select>
-            <label
-              htmlFor="width"
-              title="Select Image width:"
-              className="hidden"
-            >
-              Select Image Height:
-            </label>
-            <select
-              id="width"
-              name="width"
-              value={width}
-              onChange={(e) => setWidth(e.target.value)}
-              className="w-full p-3 rounded-md"
-            >
-              <option value="128">128</option>
-              <option value="256">256</option>
-              <option value="512" selected>
-                512
-              </option>
-              <option value="1024">1024</option>
-            </select>
-            <div className="w-full flex flex-row gap-1 justify-between">
-              <button type="submit" className="w-1/2 bg-primary p-3 rounded-md">
-                Go!
-              </button>
-              <div className="flex w-1/2 relative bg-primary rounded-md items-center justify-evenly">
-                <div
-                  onClick={handleMint}
-                  className="w-full flex items-center justify-evenly"
-                >
-                  MINT NFT
-                </div>
-                <div className="absolute top-0 right-0 h-full flex justify-center items-center">
-                  <div className="border-l border-brandGray-600 px-3">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 text-black cursor-pointer"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      onClick={toggleDropdown}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    className={`${
-                      isDropdownOpen ? "block" : "hidden"
-                    } bg-white absolute top-full right-0 w-32 shadow-lg rounded-md`}
-                  >
-                    {/* Dropdown content goes here */}
-                    <ul
-                      className="w-full"
-                      onClick={() => setIsDropdownOpen(false)}
-                    >
-                      <li
-                        className="w-full px-5 hover:bg-lime-200 rounded-md"
-                        onClick={() => {
-                          setMintNetwork("Polygon Mumbai");
-                        }}
-                      >
-                        Polygon
-                      </li>
-                      <li
-                        className="w-full border-y border-brandGray-600 px-5 hover:bg-lime-200"
-                        onClick={() => {
-                          setMintNetwork("Avalanche Fuji");
-                        }}
-                      >
-                        Avalanche
-                      </li>
-                      <li
-                        className="w-full px-5 hover:bg-lime-200 rounded-md"
-                        onClick={() => {
-                          setMintNetwork("Fantom Testnet");
-                        }}
-                      >
-                        Fantom
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
+                    <form className="w-full flex flex-col gap-2" onSubmit={handleSubmit}>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Name of your awesome NFT"
+                            className="w-full p-3 rounded-md bg-brandGray-600 text-brandGray-100"
+                        />
+                        <textarea
+                            name="prompt"
+                            placeholder="Enter a prompt to display an image"
+                            className="w-full p-3 rounded-md bg-brandGray-600 text-brandGray-100"
+                            rows={3}
+                        />
+                        <input
+                            type="text"
+                            name="negative_prompt"
+                            placeholder="Specify things to not see in the output"
+                            className="w-full p-3 rounded-md bg-brandGray-600 text-brandGray-100"
+                        />
+                        <label
+                            htmlFor="height"
+                            title="Select Image Height:"
+                            className="hidden"
+                        >
+                            Select Image Height:
+                        </label>
+                        <select
+                            id="height"
+                            name="height"
+                            value={height}
+                            onChange={(e) => setHeight(e.target.value)}
+                            className="w-full p-3 rounded-md bg-brandGray-600 text-brandGray-100"
+                        >
+                            <option value="128">128</option>
+                            <option value="256">256</option>
+                            <option value="512" selected>
+                                512
+                            </option>
+                            {/* <option value="1024">1024</option> */}
+                        </select>
+                        <label
+                            htmlFor="width"
+                            title="Select Image width:"
+                            className="hidden"
+                        >
+                            Select Image Height:
+                        </label>
+                        <select
+                            id="width"
+                            name="width"
+                            value={width}
+                            onChange={(e) => setWidth(e.target.value)}
+                            className="w-full p-3 rounded-md bg-brandGray-600 text-brandGray-100"
+                        >
+                            <option value="128">128</option>
+                            <option value="256">256</option>
+                            <option value="512" selected>
+                                512
+                            </option>
+                            <option value="1024">1024</option>
+                        </select>
+                        <div className="w-full flex flex-row gap-1 justify-between">
+                            <button type="submit" className="w-1/2 bg-brandPurple-mid text-white font-semibold p-3 rounded-md">
+                                GO
+                            </button>
+                            <div className="flex w-1/2 relative bg-brandPurple-mid text-white font-semibold rounded-md items-center justify-evenly">
+                                <div onClick={handleMint}
+                                    className="w-full flex items-center justify-evenly">MINT NFT
+                                </div>
+                                <div className="absolute top-0 right-0 h-full flex justify-center items-center">
+                                    <div className="border-l border-brandGray-600 px-3">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="h-5 w-5 text-white cursor-pointer"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            onClick={toggleDropdown}
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M19 9l-7 7-7-7"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <div
+                                        className={`${isDropdownOpen ? 'block' : 'hidden'
+                                            } absolute top-full right-0 w-32 shadow-lg rounded-md bg-brandGray-600 text-brandGray-100`}
+                                    >
+                                        {/* Dropdown content goes here */}
+                                        <ul
+                                            className='w-full'
+                                            onClick={() => setIsDropdownOpen(false)}>
+                                            <li className='w-full px-5 hover:bg-brandPurple-dark rounded-t-md py-0.5'
+                                                onClick={() => {
+                                                    setMintNetwork('Polygon Mumbai')
+                                                }}>Polygon</li>
+                                            <li className='w-full border-y border-brandGray-200/40 px-5 hover:bg-brandPurple-dark py-0.5'
+                                                onClick={() => {
+                                                    setMintNetwork('Avalanche Fuji')
+                                                }}>Avalanche</li>
+                                            <li className="w-full px-5 hover:bg-brandPurple-dark rounded-b-md py-0.5"
+                                                onClick={() => {
+                                                    setMintNetwork('Fantom Testnet')
+                                                }}>Fantom</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
 
           {error && <div>{error}</div>}
         </div>

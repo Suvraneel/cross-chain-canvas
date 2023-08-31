@@ -20,6 +20,11 @@ module.exports = {
           500: '#111112',
           600: '#0C0C0D',
         },
+        brandPurple: {
+          'lite': '#A881E6',
+          'mid': '#7450AC',
+          'dark': '#523480'
+        }
       }
     },
   },
