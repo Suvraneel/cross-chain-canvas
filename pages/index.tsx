@@ -3,7 +3,7 @@ import { inter, maven } from '@/fonts'
 import { useAccount } from 'wagmi';
 import ReplicateFrontEnd from './../components/ReplicateFrontEnd';
 const Home: NextPage = () => {
-  const { address, isConnecting, isDisconnected } = useAccount();
+  const { address } = useAccount();
   return (
     <div className='flex justify-start items-start p-10 z-10'>
       {!address ?

@@ -1,7 +1,10 @@
-import type { NextPage } from 'next';
 import { ConnectKitButton } from 'connectkit';
-import { ReactNode } from 'react';
-import Spline from '@splinetool/react-spline';
+import type { NextPage } from 'next';
+import dynamic from 'next/dynamic';
+import { ReactNode, Suspense } from 'react';
+const Spline = dynamic(() => import("@splinetool/react-spline"), {
+  ssr: false,
+});
 
 interface LayoutProps {
   children: ReactNode;
@@ -15,7 +18,9 @@ const Layout: NextPage<LayoutProps> = ({ children }) => {
       </div>
       <div className='relative h-full w-full flex justify-center items-center'>
         <div className='absolute z-0 w-fit h-fit'>
-          <Spline scene="https://prod.spline.design/H4hvCa-im9BZA53N/scene.splinecode" />
+          <Suspense fallback={<div className='text-lg text-white'>3D Scene Loading...</div>}>
+            <Spline scene="https://prod.spline.design/H4hvCa-im9BZA53N/scene.splinecode" />
+          </Suspense>
         </div>
         <div className='z-10 h-full w-full'>
           {children}
