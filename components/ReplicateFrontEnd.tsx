@@ -8,10 +8,12 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 export default function ReplicateFrontEnd() {
     const [prediction, setPrediction] = useState<any | null>(null);
     const [error, setError] = useState<string | null>(null);
-    const [metadata, setMetadata] = useState<string | null>(null);
+    const [name, setName] = useState<string>('');
+    const [desc, setDesc] = useState<string>('');
     const [height, setHeight] = useState<string>('512');
     const [width, setWidth] = useState<string>('512');
-    const sizes = [128, 256, 512, 1024];
+    const storage = new ThirdwebStorage({ clientId: process.env.THIRDWEB_CLIENT_ID });
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const response = await fetch("/api/predictions", {
@@ -50,13 +52,18 @@ export default function ReplicateFrontEnd() {
         }
     };
 
-    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleMint = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file && isImageFile(file)) {
-            const metadata = await uploading(file);
-            // const  metadata = URL.createObjectURL(file);
-            setMetadata(metadata);
-            console.log(metadata);
+            const url = await uploading(file);
+            var data = JSON.stringify({
+                name: name,
+                description: desc,
+                image: url,
+            })
+            console.log(data);
+            const metaData = await uploading(file);
+            console.log(metaData);
         } else {
             // Handle invalid image format
             console.log("Invalid image format. Please upload a png, jpg, or jpeg file.");
@@ -71,7 +78,6 @@ export default function ReplicateFrontEnd() {
     const uploading = async (e: any) => {
         console.log(e);
         // setLoading(2);
-        const storage = new ThirdwebStorage({ clientId: '10e102a5b3c3c2691b475b5308b7d102' });
         const url = await storage.upload(e);
         console.log(url);
         // setLoading(0);
@@ -138,6 +144,7 @@ export default function ReplicateFrontEnd() {
                             </button>
                             <button
                                 type="button"
+                                onClick={handleMint}
                                 className="w-1/2 bg-primary p-3 rounded-md"
                             >
                                 Mint NFT
